@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                {% if info %}
+                <span class="fs-4">Welcome {{ info.user.first_name }}!</span>
+                {% endif %}
+                <div class="text-end d-flex align-items-center">
+                    <a class="nav nav-link text-light" href="/new">Add Magazine</a>
+                    <a class="nav nav-link text-light" href="/users/account">Account</a>
+                    <a class="btn btn-outline-light" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <h3 class="my-3">Magazines</h3>
+    </div>
+    <div class="container">
+        <div class="border rounded p-2 w-auto">
+            {% for magazine in info.magazines %}
+            <p class="my-1"><a class="text-decoration-none" href="/show/{{ magazine.id }}">{{ magazine.name }}</a>
+                by {{ magazine.owner.first_name }} {{ magazine.owner.last_name}}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
